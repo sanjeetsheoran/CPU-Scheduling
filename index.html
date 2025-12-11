@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CPU Scheduler Simulator (Web)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>CPU Scheduler Simulator</h1>
+
+    <section class="controls card">
+      <div class="left">
+        <h2>Add Process</h2>
+        <div class="row">
+          <label>Arrival Time <input id="arrival" type="number" min="0" value="0"></label>
+          <label>Burst Time <input id="burst" type="number" min="1" value="1"></label>
+          <label>Priority <input id="priority" type="number" min="0" value="0"></label>
+        </div>
+        <div class="row actions">
+          <button id="addProc">Add Process</button>
+          <button id="clearProcs" class="danger">Clear All</button>
+        </div>
+      </div>
+
+      <div class="right">
+        <h2>Algorithm & Run</h2>
+        <label class="alg">
+          <select id="algorithm">
+            <option value="fcfs">FCFS</option>
+            <option value="sjf">SJF (Non-preemptive)</option>
+            <option value="priority">Priority (Non-preemptive)</option>
+            <option value="rr">Round Robin</option>
+          </select>
+        </label>
+
+        <label id="quantumWrap">Quantum <input id="quantum" type="number" min="1" value="2"></label>
+
+        <div class="row actions">
+          <button id="run">Run</button>
+          
+          <button id="reset" class="danger">Reset</button>
+        </div>
+
+        <div class="info">
+          <small>Tip: Add multiple processes. For RR choose a quantum value.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-list card">
+      <h2>Processes</h2>
+      <table id="procTable">
+        <thead>
+          <tr><th>PID</th><th>Arrival</th><th>Burst</th><th>Priority</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="results card" id="results" hidden>
+      <h2>Results</h2>
+
+      <div class="gantt-wrap">
+        <h3>Gantt Chart</h3>
+        <div id="gantt" class="gantt"></div>
+        <div id="gantt-ticks" class="gantt-ticks"></div>
+      </div>
+
+      <div class="metrics">
+        <div><strong>Avg Waiting Time:</strong> <span id="avgWT">-</span></div>
+        <div><strong>Avg Turnaround Time:</strong> <span id="avgTAT">-</span></div>
+      </div>
+
+      <h3>Process Table</h3>
+      <table id="outTable">
+        <thead>
+          <tr><th>PID</th><th>Arrival</th><th>Burst</th><th>Priority</th><th>Completion</th><th>Waiting</th><th>Turnaround</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <footer class="footer">
+      <small>Built for OS project — FCFS, SJF, Priority, Round Robin</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
